@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 import json
 import random
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ def efficient_hunter_kazuma():
         efficiency = calculate_efficiency(monsters, 0, 0)
         results.append({"efficiency": efficiency})
     print(results)
-    return json.dumps(results)
+    return jsonify(results)
 
 
 def calculate_efficiency(monsters, gold, stage):
