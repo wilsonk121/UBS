@@ -13,7 +13,7 @@ def helloworld():
 @app.route('/efficient-hunter-kazuma', methods=['POST'])
 def efficient_hunter_kazuma():
     data = request.json
-    data = json.loads(data)
+
     results = []
     for entry in data:
         monsters = entry.get('monsters')

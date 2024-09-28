@@ -18,9 +18,9 @@ print(type(json_str))
 
 
 # Send a POST request to the endpoint /efficient-hunter-kazuma
-#response = requests.post('https://ubs-hackathon.onrender.com/efficient-hunter-kazuma', json=json_str)# Print the status code
 
-response = requests.post('http://127.0.0.1:5000/efficient-hunter-kazuma', json=json_str)# Print the status code
+
+response = requests.post('https://ubs-yplr.onrender.com/efficient-hunter-kazuma', json=json_str)# Print the status code
 print("Status Code:", response.status_code)
 
 # Print the content (response body)
