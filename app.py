@@ -19,6 +19,7 @@ def efficient_hunter_kazuma():
         monsters = entry.get('monsters')
         efficiency = calculate_efficiency(monsters, 0, 0)
         results.append({"efficiency": efficiency})
+    print(results)
     return json.dumps(results)
 
 
