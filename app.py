@@ -52,6 +52,7 @@ def bugfixer():
         bugseq_list = entry.get('bugseq')
         print(bugseq_list)
         result.append(max_bugsfixed(bugseq_list,0,0))
+    print(result)
     return jsonify(result)
 
 
