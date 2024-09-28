@@ -98,7 +98,7 @@ def find_corrections(input_data):
         i=i+1
         # Group dictionary words by their lengths
         length_dict = {}
-        if (i <= 3):
+        if (i <= 4):
             for word in data['dictionary']:
                 word_len = len(word)
                 if word_len not in length_dict:
