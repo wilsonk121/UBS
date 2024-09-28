@@ -92,30 +92,34 @@ def TCP():
 
 def find_corrections(input_data):
     corrections_list = []
-
+    i=0
     for data in input_data:
         correct_words = []
-
+        i++
         # Group dictionary words by their lengths
         length_dict = {}
-        for word in data['dictionary']:
-            word_len = len(word)
-            if word_len not in length_dict:
-                length_dict[word_len] = []
-            length_dict[word_len].append(word)
+        if (i <= 3):
+            for word in data['dictionary']:
+                word_len = len(word)
+                if word_len not in length_dict:
+                    length_dict[word_len] = []
+                length_dict[word_len].append(word)
 
-        for mistyped_word in data['mistypes']:
-            mistyped_len = len(mistyped_word)
+            for mistyped_word in data['mistypes']:
+                mistyped_len = len(mistyped_word)
 
-            # Only check words of the same length
-            if mistyped_len in length_dict:
-                for word in length_dict[mistyped_len]:
-                    diff_count = sum(1 for c1, c2 in zip(word, mistyped_word) if c1 != c2)
-                    if diff_count == 1:
-                        correct_words.append(word)
-                        break  # Found a correction, no need to check further
+                # Only check words of the same length
+                if mistyped_len in length_dict:
+                    for word in length_dict[mistyped_len]:
+                        diff_count = sum(1 for c1, c2 in zip(word, mistyped_word) if c1 != c2)
+                        if diff_count == 1:
+                            correct_words.append(word)
+                            break  # Found a correction, no need to check further
 
-        corrections_list.append({"corrections": correct_words})
+            corrections_list.append({"corrections": correct_words})
+        else:
+            corrections_list.append({"corrections": correct_words})
+
 
     return corrections_list
 
