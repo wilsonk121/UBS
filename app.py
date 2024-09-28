@@ -48,6 +48,7 @@ def bugfixer():
 
     data = request.json
     result=[]
+    print(data)
     for entry in data:
         bugseq_list = entry.get('bugseq')
         print(bugseq_list)
