@@ -45,7 +45,6 @@ def calculate_efficiency(monsters, gold, stage):
 
 @app.route('/bugfixer/p2', methods=['POST'])
 def bugfixer():
-
     data = request.json
     result=[]
     print(data)
@@ -53,6 +52,7 @@ def bugfixer():
         bugseq_list = entry.get('bugseq')
         print(bugseq_list)
         result.append(max_bugsfixed(bugseq_list,0,0))
+    print("result is")
     print(result)
     return jsonify(result)
 
@@ -75,6 +75,13 @@ def max_bugsfixed(lst,current_time,bug_fixed):
         bugfixed_list.append(max_bugsfixed(temp,current_time+each[0],bug_fixed+1))
 
     return max(bugfixed_list)
+
+
+@app.route('/the-clumsy-programmer', methods=['POST'])
+def TCP():
+    data = request.json
+    print(data)
+    return "hey"
 
 
 
