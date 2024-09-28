@@ -95,16 +95,28 @@ def find_corrections(input_data):
 
     for data in input_data:
         correct_words = []
+
+        # Group dictionary words by their lengths
+        length_dict = {}
         for word in data['dictionary']:
-            for mistyped_word in data['mistypes']:
-                if len(word) == len(mistyped_word):
+            word_len = len(word)
+            if word_len not in length_dict:
+                length_dict[word_len] = []
+            length_dict[word_len].append(word)
+
+        for mistyped_word in data['mistypes']:
+            mistyped_len = len(mistyped_word)
+
+            # Only check words of the same length
+            if mistyped_len in length_dict:
+                for word in length_dict[mistyped_len]:
                     diff_count = sum(1 for c1, c2 in zip(word, mistyped_word) if c1 != c2)
                     if diff_count == 1:
                         correct_words.append(word)
-                        break
+                        break  # Found a correction, no need to check further
 
         corrections_list.append({"corrections": correct_words})
-    print(corrections_list)
+
     return corrections_list
 
 
