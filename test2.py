@@ -1,53 +1,22 @@
-from flask import Flask
-from flask import request
-import json
-import random
-
-app = Flask(__name__)
-
-
-@app.route("/")
-def helloworld():
-    return 'Hello World'
-
-
-@app.route('/efficient-hunter-kazuma', methods=['POST'])
-def efficient_hunter_kazuma():
-    data = request.get_json()
-    data = f'{data}'
-    print(f'{data}')
-    data = data.replace("\'", "\"")
-    print(data)
-    data = json.loads(f'{data}')
-    print(data)
-    results = []
-    for entry in data:
-        print(entry)
-        monsters = entry.get('monsters')
-        efficiency = calculate_efficiency(monsters, 0, 0)
-        results.append({"efficiency": efficiency})
-
-    print(results)
-    return json.dumps(results)
 
 
 def calculate_efficiency(monsters, gold, stage):
-    list = []
+    list=[]
     if stage == 0:
         # Prepare circle
         if len(monsters) == 0 or len(monsters) == 1:
             return gold
         else:
-            # go stage 1
-            temp = monsters.copy()
+            #go stage 1
+            temp=monsters.copy()
             temp.pop(0)
 
-            nextstage1 = calculate_efficiency(temp, gold - monsters[0], 1)
+            nextstage1=calculate_efficiency(temp,gold - monsters[0],1)
             list.append(nextstage1)
-            # stay stage 0
-            temp = monsters.copy()
+            #stay stage 0
+            temp=monsters.copy()
             temp.pop(0)
-            staystage0 = calculate_efficiency(temp, gold, 0)
+            staystage0=calculate_efficiency(temp,gold,0)
             list.append(staystage0)
     elif stage == 1:
         # Attack
@@ -56,12 +25,12 @@ def calculate_efficiency(monsters, gold, stage):
         elif len(monsters) == 0:
             return gold
         else:
-            # now attack
+            #now attack
             temp = monsters.copy()
             temp.pop(0)
             nowattack = calculate_efficiency(temp, gold + monsters[0], 2)
             list.append(nowattack)
-            # later attack
+            #later attack
             temp = monsters.copy()
             temp.pop(0)
             laterattack = calculate_efficiency(temp, gold, 1)
@@ -73,7 +42,7 @@ def calculate_efficiency(monsters, gold, stage):
         else:
             temp = monsters.copy()
             temp.pop(0)
-            return calculate_efficiency(temp, gold, 0)
+            return calculate_efficiency(temp,gold,0)
     else:
         # Add handling for other stages
         pass
@@ -84,4 +53,5 @@ def calculate_efficiency(monsters, gold, stage):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    guess = {"guess": 1}
+    print(type(guess))
