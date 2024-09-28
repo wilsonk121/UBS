@@ -43,5 +43,11 @@ def calculate_efficiency(monsters, gold, stage):
     else:
         return gold
 
+@app.route('/bugfixer/p2', methods=['POST'])
+def bugfixer():
+    data = request.json
+
+
+
 if __name__ == "__main__":
     app.run(debug=False)
