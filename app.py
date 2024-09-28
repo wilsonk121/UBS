@@ -86,8 +86,8 @@ def max_bugsfixed(lst, current_time=0, bug_fixed=0, memo=None):
 @app.route('/the-clumsy-programmer', methods=['POST'])
 def TCP():
     data = request.json
-    print(data)
-    return "hey"
+
+    return jsonify(find_corrections(data))
 
 
 def find_corrections(input_data):
@@ -104,7 +104,7 @@ def find_corrections(input_data):
                         break
 
         corrections_list.append({"corrections": correct_words})
-
+    print(corrections_list)
     return corrections_list
 
 
