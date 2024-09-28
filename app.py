@@ -5,6 +5,10 @@ import random
 
 app = Flask(__name__)
 
+@app.route("/")
+def helloworld():
+    return 'Hello World'
+
 
 @app.route('/efficient-hunter-kazuma', methods=['POST'])
 def efficient_hunter_kazuma():
@@ -36,7 +40,6 @@ def calculate_efficiency(monsters, gold, stage):
         return calculate_efficiency(monsters[1:], gold, 0)
     else:
         return gold
-
 
 if __name__ == "__main__":
     app.run(debug=False)

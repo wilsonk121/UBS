@@ -23,6 +23,5 @@ print(type(json_str))
 response = requests.post('http://127.0.0.1:5000/efficient-hunter-kazuma', json=json_str)# Print the status code
 print("Status Code:", response.status_code)
 
-
 # Print the content (response body)
 print("Content:", response.text)
