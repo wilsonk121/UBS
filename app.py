@@ -95,7 +95,7 @@ def find_corrections(input_data):
     i=0
     for data in input_data:
         correct_words = []
-        i++
+        i=i+1
         # Group dictionary words by their lengths
         length_dict = {}
         if (i <= 3):
